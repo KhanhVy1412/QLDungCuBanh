@@ -1,0 +1,20 @@
+﻿@model QLDungCuBanh.Models.SanPham
+
+@{
+    ViewBag.Title = "Finish";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<body style="background-color:black">
+    <span style="color:white">
+        <table style=" align="center">
+            <td>
+                <h1> Đơn của bạn đã đặt hàng thành công </h1>
+            </td>
+        </table>
+    </span>
+</body>
+<div>
+    @Html.ActionLink("Quay lại trang chủ", "Index")
+</div>
+

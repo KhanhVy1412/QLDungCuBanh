@@ -1,0 +1,128 @@
+﻿<style>
+    .lop-ban-quyen{
+      clear:both;
+  }
+  .lop-ban-q-trai{
+      float:left;
+      width:40%;
+      text-align:center;
+    }
+  .lop-ban-q-phai{
+      float:right;
+      width:60%;
+      text-align:right;
+    
+  }
+ 
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/image/tenor.gif" rel="shortcut icon" type="image/x-icon" />
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="background-color:black;color:white">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                <li>@Html.ActionLink("BAKERS' MART", "Index", "SanPham", new { area = "" }, new { @class = "navbar-brand", style = "text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87" })</li>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "SanPham")</li>
+                    <li>@Html.ActionLink("Tạo mới", "Create", "SanPham")</li>
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Dụng cụ làm bánh
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" style="background-color:darkgrey">
+                            <li><a href="@Url.Action("PhoiLong", "SanPham")">Phới đánh trứng-Cán bột</a></li>
+                            <li><a href="@Url.Action("RayBot", "SanPham")">Rây bột-Ca đong-Muỗng đo lường</a></li>
+                            <li><a href="@Url.Action("TuiBatKem", "SanPham")">Đuôi bắt kem-Túi bắt kem</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Khuôn bánh
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" style="background-color:darkgrey">
+                            <li><a href="@Url.Action("KhuonNhom", "SanPham")">Khuôn Nhôm</a></li>
+                            <li><a href="@Url.Action("KhuonSilicon", "SanPham")">Khuôn silicon</a></li>
+                            <li><a href="@Url.Action("KhuonGiay", "SanPham")">Khuôn giấy</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Nguyên liệu
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" style="background-color:darkgrey">
+                            <li><a href="@Url.Action("DuongBot", "SanPham")">Đường-Bột</a></li>
+                            <li><a href="@Url.Action("Whipping", "SanPham")">Whipping-Topping kem bơ sữa</a></li>
+                            <li><a href="@Url.Action("HuongLieu", "SanPham")">Hương liệu-Rượu</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+                @*@Html.Partial("_LoginPartial")*@
+                <form action="~/SanPham/SearchByName" method="get" style="text-align:right">
+                    <input type="text" name="name" placeholder="tìm kiếm tên..." />
+                    <input type="submit" name="Find" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <br/>
+      
+        <footer>
+            
+            <div class="lop-ban-quyen">
+                <hr />
+                <div class="lop-ban-q-trai">
+                    @*<img src="~/Content/Image/169985545_1146182399181886_71678872880803340_n.png" />*@
+                    <div id="map" style="width:80%">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.7558634099737!2d106.65818971408213!3d10.75328946256249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ef6ca551517%3A0xc331bdcaa0992e4b!2zNzM2IE5ndXnhu4VuIFRyw6NpLCBQaMaw4budbmcgMTEsIFF14bqtbiA1LCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1619421665431!5m2!1svi!2s" width="80%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="lop-ban-q-phai">
+                    <h3>
+                        LIÊN HỆ:
+                    </h3>
+                    <p> Kênh mua sắm Nguyên liệu- Dụng cụ tốt nhất tại Việt Nam</p>
+                    @*<div class="input-group-prepend">*@
+                    <p> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; Địa chỉ: 736 Nguyễn Trãi phường 11 quận 5 TPHCM</i></p>
+                    <p><i class="fa fa-phone" aria-hidden="true">&nbsp; Điện thoại :19001080</i></p>
+                    <p><i class="fa fa-envelope-o" aria-hidden="true">&nbsp;Mail: www.Dungculambanh.vn</i></p>
+
+                    @*</div>*@
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,87 @@
+﻿@model List<QLDungCuBanh.Models.Card_Item>
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<body style="background-color:black; color :white">
+    <span>
+        @if (Model == null)
+        {
+            <p class="text-info text-center">
+                Chưa có sản phẩm trong giỏ hàng!
+            </p>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Mã hàng</th>
+                                <th>Tên hàng</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">@item.MaSP" </td>
+                                    <td>
+                                        <a target="_blank" href="@Url.Action("Details", "Sanpham", new { id = item.MaSP })" style="color: white">@item.TenSP</a>
+                                    </td>
+                                    <td>
+                                        <form action="@Url.Action("Update")" method="get">
+                                            <input type="hidden" name="MaSP" value="@item.MaSP" />
+                                            <input type="number" min="1" name="txtSoluong"
+                                                   value="@item.SoLuong" style="color:black" />
+
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                Cập nhật
+
+                                            </button>
+
+                                        </form>
+                                    </td>
+                                    <td> @item.DonGia.ToString("#,##0") VNĐ </td>
+                                    <td> @item.ThanhTien.ToString("#,##0") VNĐ </td>
+                                    <td>
+                                        <a href="@Url.Action("DelCartItem", new { MaSP = item.MaSP })"
+                                           onclick="return confirm('Xóa sản phẩm này?');" class="btn btn-danger btn-sm">Xóa</a>
+                                    </td>
+
+                                </tr>
+                            }
+                            <tr>
+                                <td></td>
+                                <td class="text-right">Tổng số lượng:</td>
+                                <td> @Model.Sum(m => m.SoLuong) </td>
+                                <td class="text-right">Tổng thành tiền:</td>
+                                <td>@Model.Sum(m => m.ThanhTien).ToString("#,##0") VNĐ </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <form action="@Url.Action("Order", "GioHang")" method="get">
+                                        Thông tin đặt hàng - Email:<input type="email" name="Email" style="color:black" />
+                                        - Điện thoại: <input type="text" name="Phone" style="color:black" />
+                                        <input type="submit" value="Đặt hàng" style="color:black" />
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </span>
+</body>
+<div>
+    @Html.ActionLink("Quay lại trang chủ", "Index", "SanPham")
+</div>
+

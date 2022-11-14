@@ -1,0 +1,139 @@
+﻿@model IEnumerable<QLDungCuBanh.Models.SanPham>
+
+@{
+    ViewBag.Title = "HuongLieu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .lop-sp {
+        float: left;
+        width: 26%;
+        text-align: center;
+        padding: 10px 5px;
+        margin: 0 auto;
+        font-weight: bold;
+        word-wrap: break-word;
+        margin: 10px;
+        margin-left: 2%;
+        margin-right: 3%;
+        border: 2px solid transparent;
+        border-color: gray;
+        font-size: 100%;
+    }
+
+        .lop-sp .tua-sp {
+            word-wrap: break-word;
+            font-size: 100%;
+        }
+
+        .lop-sp .lop-hinh {
+            text-align: center;
+            padding: 0;
+        }
+
+    .cot-bao {
+        clear: both;
+    }
+
+    .cot-trai {
+        float: left;
+        width: 20%;
+    }
+
+    .cot-phai {
+        float: right;
+        width: 75%;
+    }
+
+    .lop-menu-doc-den {
+        list-style: none;
+        padding-left: 0px;
+        background-color: darkred;
+        color: white;
+    }
+
+        .lop-menu-doc-den > li {
+            border-bottom: gainsboro solid thin;
+            padding: 5px;
+        }
+
+    .lop-menu-doc-xam {
+        list-style: none;
+        padding-left: 0px;
+        background-color: darkgray;
+        color: white;
+    }
+
+        .lop-menu-doc-xam > li {
+            border-bottom: gray solid thin;
+            padding: 5px;
+        }
+
+        .lop-menu-doc-xam a {
+            color: black;
+        }
+
+            .lop-menu-doc-xam a:link {
+                text-decoration: none;
+                padding: 5px;
+            }
+
+            .lop-menu-doc-xam a:hover {
+                color: aquamarine;
+            }
+</style>
+<h2>HuongLieu</h2>
+
+<div class="cot-bao">
+    <div class="cot-trai">
+        <ul class="lop-menu-doc-den">
+            <li>DANH MỤC</li>
+        </ul>
+        <ul class="lop-menu-doc-xam">
+            <li style="color:darkred;font-size:100%"><b>DỤNG CỤ LÀM BÁNH</b></li>
+            <li><a href="@Url.Action("PhoiLong", "SanPham")">Phới đánh trứng-Cán bột</a></li>
+            <li><a href="@Url.Action("RayBot", "SanPham")">Rây bột-Ca đong-Muỗng đo lường</a></li>
+            <li><a href="@Url.Action("TuiBatKem", "SanPham")">Đuôi bắt kem-Túi bắt kem</a></li>
+            <li style="color:darkred;font-size:100%"><b>KHUÔN BÁNH</b></li>
+            <li><a href="@Url.Action("KhuonNhom", "SanPham")">Khuôn Nhôm</a></li>
+            <li><a href="@Url.Action("KhuonSilicon", "SanPham")">Khuôn silicon</a></li>
+            <li><a href="@Url.Action("KhuonGiay", "SanPham")">Khuôn giấy</a></li>
+            <li style="color:darkred;font-size:100%"><b>NGUYÊN LIÊU</b></li>
+            <li><a href="@Url.Action("DuongBot", "SanPham")">Đường-Bột</a></li>
+            <li><a href="@Url.Action("Whipping", "SanPham")">Whipping-Topping kem bơ sữa</a></li>
+            <li><a href="@Url.Action("HuongLieu", "SanPham")">Hương liệu-Rượu</a></li>
+        </ul>
+
+    </div>
+    <div class="cot-phai">
+        @*<p>
+                @Html.ActionLink("Create New", "Create")
+            </p>*@
+
+        @foreach (var item in Model)
+        {
+            <div class="lop-sp">
+                <div class="lop-hinh">
+                    <img width="100%" src="/@item.HinhSP" alt="HinhSP" />
+                </div>
+                <p class="tua-sp" style="font-size:110%">
+                    @Html.DisplayFor(modelItem => item.TenSP)
+                </p>
+                <p style="color:sandybrown">
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </p>
+                <p>
+                    <a class="btn btn-success btn-sm" href="@Url.Action("AddToCart", "GioHang", new { MaSP = item.MaSP })">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Thêm vào giỏ
+                    </a>
+                </p>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaSP }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MaSP }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MaSP })
+
+                </p>
+            </div>
+        }
+        <br />
+    </div>

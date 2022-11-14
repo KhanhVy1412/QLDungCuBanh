@@ -1,0 +1,80 @@
+﻿<style>
+    .lop-sp {
+        float: left;
+        width: 20%;
+        text-align: center;
+        padding: 10px 5px;
+        margin: 0 auto;
+        font-weight: bold;
+        word-wrap: break-word;
+        margin: 10px;
+        margin-left: 6%;
+        margin-right: 7%;
+        border: 2px solid transparent;
+        border-color: gray;
+    }
+
+        .lop-sp .tua-sp {
+            word-wrap: break-word;
+            font-size: 120%;
+        }
+
+        .lop-sp .lop-hinh {
+            text-align: center;
+            padding: 0;
+            /*        border: 3px solid transparent;
+        border-color: black;
+        background: white;
+        border-radius: 20px;*/
+        }
+</style>
+@model IEnumerable<QLDungCuBanh.Models.SanPham>
+
+@{
+    ViewBag.Title = "SearchByName";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SearchByName</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (!Model.Any())
+{
+    <p><h3 style="text-align:center">Không tìm thấy kết quả phù hợp</h3></p>
+}
+else
+{
+    <h3 style="text-align:center">Kết quả tìm kiếm</h3>
+<p>
+    @foreach (var item in Model)
+    {
+        <div class="lop-sp">
+            <div class="lop-hinh">
+                <img width="100%" src="/@item.HinhSP" alt="HinhSP" />
+            </div>
+            <p class="tua-sp" style="font-size:120%">
+                @Html.DisplayFor(modelItem => item.TenSP)
+            </p>
+            <p style="color:sandybrown">
+                @Html.DisplayFor(modelItem => item.DonGia)
+            </p>
+            <p>
+                <a class="btn btn-success btn-sm" href="@Url.Action("AddToCart", "GioHang", new { MaSP = item.MaSP })">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Thêm vào giỏ
+                </a>
+
+            </p>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaSP }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaSP }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaSP })
+
+            </p>
+        </div>
+      
+    }
+
+ </p>
+}
